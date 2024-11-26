@@ -1,0 +1,122 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: black;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container for the Cards */
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 50px;
+}
+
+/* Card Styles */
+.card {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+    color: #333;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Card Titles with Different Colors */
+.card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.escort-title {
+    background-color: #5D9CEC; /* Light blue for Independent Escort */
+}
+
+.client-title {
+    background-color: #48C9B0; /* Teal green for Guest/Client */
+}
+
+/* List of Features */
+.card-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.card-features li {
+    padding: 5px 0;
+    font-size: 0.95rem;
+    color: #666;
+    position: relative;
+    padding-left: 25px; /* Space for the tick */
+}
+
+.card-features li::before {
+    content: '\2713'; /* Unicode for check mark */
+    color: green;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2rem; /* Adjust the size of the tick */
+}
+
+
+/* Price or Status Information */
+.price {
+    font-weight: bold;
+    color: #28a745; /* Green for emphasis */
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 50px; /* More rounded for a modern look */
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    width: auto; /* Allow button to adjust width based on content */
+    margin: 0 auto; /* Centering the button */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2); /* Subtle shadow */
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Subtle hover effect */
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3); /* Enhance shadow on hover */
+}
+
+.btn:active {
+    transform: translateY(1px); /* Slight depression effect when clicked */
+}
+
+.card .price, .card .btn {
+    margin-top: auto; /* Pushes these elements to the bottom of the card */
+}

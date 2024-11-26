@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flirtro - Signup</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Card 1: Independent Escort -->
+        <div class="card">
+            <div class="card-title escort-title">Register as Independent Escort</div>
+            <ul class="card-features">
+                <li>Add a single profile</li>
+                <li>Add profile pictures</li>
+                <li>Add contact information</li>
+                <li>Upgrade to premium</li>
+                <li>Featured position</li>
+                <li>Add tours</li>
+                <li>Add blacklisted clients</li>
+                <li>Post classified ads</li>
+                <li>Many more</li>
+            </ul>
+            <p class="price">Free</p>
+            <a href="{% url 'profiles:escort_register' %}" class="btn">Create an Account</a>
+        </div>
+        
+        <!-- Card 2: Guest/Client -->
+        <div class="card">
+            <div class="card-title client-title">Register as a Guest/Client</div>
+            <ul class="card-features">
+                <li>Mark favorite profiles</li>
+                <li>See profile photos</li>
+                <li>Contact escorts</li>
+                <li>Add reviews to escorts and rate them</li>
+                <li>Post classified ads</li>
+            </ul>
+            <p class="price">For Client Only (Not for Escorts!)</p>
+            <a href="{% url 'profiles:client_register' %}" class="btn">Register as a Guest/Client</a>
+        </div>
+    </div>
+</body>
+</html>

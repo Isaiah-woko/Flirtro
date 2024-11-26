@@ -1,0 +1,121 @@
+
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    color: #333;
+}
+
+/* Wrapper */
+.wrapper {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #F2C6D0;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Title */
+h1 {
+    text-align: center;
+    color: #444;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Input Box Container */
+.input-box-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Input Box */
+.input-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-box label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-box input, .custom-select select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.input-box input:focus, .custom-select select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Custom Select */
+.custom-select {
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.custom-select select {
+    width: 100%;
+}
+
+
+
+/* Profile Picture Preview */
+.file-input {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+#preview-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Submit Button */
+.button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.button:hover {
+    background: #0056b3;
+}
+
+/* Login Link */
+.register-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.register-link a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
