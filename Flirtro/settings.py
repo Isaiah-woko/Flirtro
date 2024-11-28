@@ -147,3 +147,18 @@ STATICFILES_DIRS = [BASE_DIR / 'static']  # Add the path to your static folder
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+# Set the session cookie age (default is 300 seconds, i.e., 5 minutes).
+SESSION_COOKIE_AGE = 3600  # 1 hour (you can change this to suit your needs)
+
+# Ensure the session cookie is only sent over secure connections (https).
+SESSION_COOKIE_SECURE = False  # Set to True if you're using HTTPS
+
+# Optionally, set the session expiration age.
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Set to True if you want the session to expire when the browser is closed.
+
+# Ensure CSRF protection is enabled (important for security).
+CSRF_COOKIE_SECURE = False

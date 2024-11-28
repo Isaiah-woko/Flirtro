@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flirtro - Register</title>
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="wrapper">
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ wizard.management_form }}
+
+            <h1>Escort Details</h1>
+
+            <!-- Bust Size Field -->
+            <div class="input-box">
+                {{ wizard.form.bust_size.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                {{ wizard.form.bust_size }}
+                {% for error in wizard.form.bust_size.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <!-- Height Field -->
+            <div class="input-box">
+                {{ wizard.form.height.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                {{ wizard.form.height }}
+                {% for error in wizard.form.height.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <!-- Looks Field -->
+            <div class="input-box">
+                {{ wizard.form.looks.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                {{ wizard.form.looks }}
+                {% for error in wizard.form.looks.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <!-- Smoker Field -->
+            <div class="input-box">
+                {{ wizard.form.smoker.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                {{ wizard.form.smoker }}
+                {% for error in wizard.form.smoker.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <!-- Sexual Orientation Field -->
+            <div class="input-box">
+                {{ wizard.form.sexual_orientation.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                {{ wizard.form.sexual_orientation }}
+                {% for error in wizard.form.sexual_orientation.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <!-- Services Field -->
+            <div class="input-box">
+                {{ wizard.form.services.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                {{ wizard.form.services }}
+                {% for error in wizard.form.services.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="wizard-buttons">
+                {% if wizard.steps.prev %}
+                    <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.prev }}" class="btn btn-secondary">Previous</button>
+                {% endif %}
+                {% if wizard.steps.next %}
+                    <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.next }}" class="btn btn-primary">Next</button>
+                {% endif %}
+                {% if wizard.steps.last %}
+                    <input class="button" type="submit" value="Register" />
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</body>
+</html>

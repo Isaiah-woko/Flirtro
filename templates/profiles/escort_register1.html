@@ -1,0 +1,159 @@
+<!-- multi_step_wizard.form.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flirtro - Register</title>
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="wrapper">
+        
+<form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ wizard.management_form }}
+
+            <h1>Escort Details</h1>
+
+            <!-- Render the current form fields -->
+            <!-- Username and Email Fields -->
+            <div class="input-box-container">
+                <div class="input-box">
+                    {{ wizard.form.username.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                    {{ wizard.form.username }}
+                    {% for error in wizard.form.username.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                
+                <div class="input-box">
+                    {{ wizard.form.email.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                    {{ wizard.form.email }}
+                    {% for error in wizard.form.email.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Password and Confirm Password Fields -->
+            <div class="input-box-container">
+                <div class="input-box">
+                    {{ wizard.form.password.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                    {{ wizard.form.password }}
+                    {% for error in wizard.form.password.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                
+                <div class="input-box">
+                    {{ wizard.form.confirm_password.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                    {{ wizard.form.confirm_password }}
+                    {% for error in wizard.form.confirm_password.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Display Name Field -->
+            <div class="input-box">
+                {{ wizard.form.display_name.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                {{ wizard.form.display_name }}
+                {% for error in wizard.form.display_name.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <!-- Country, State, and City Fields -->
+            <!-- <div class="input-box-container">
+                <div class="custom-select">
+                    {{ wizard.form.country.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                    {{ wizard.form.country }}
+                    {% for error in wizard.form.country.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                
+                <div class="custom-select">
+                    {{ wizard.form.state.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                    {{ wizard.form.state }}
+                    {% for error in wizard.form.state.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                
+                <div class="custom-select">
+                    {{ wizard.form.city.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                    {{ wizard.form.city }}
+                    {% for error in wizard.form.city.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div> -->
+
+            <!-- Date of Birth Field -->
+            <div class="input-box">
+                {{ wizard.form.date_of_birth.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                {{ wizard.form.date_of_birth }}
+                {% for error in wizard.form.date_of_birth.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <!-- Gender Field -->
+            <div class="custom-select">
+                {{ wizard.form.gender.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                {{ wizard.form.gender }}
+                {% for error in wizard.form.gender.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <!-- Heading and Contact Fields -->
+            <div class="input-box-container">
+                <div class="input-box">
+                    {{ wizard.form.heading.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                    {{ wizard.form.heading }}
+                    {% for error in wizard.form.heading.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+
+                <div class="input-box">
+                    {{ wizard.form.country_code.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                    {{ wizard.form.country_code }}
+                    {% for error in wizard.form.country_code.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Mobile Number Field -->
+            <div class="input-box">
+                {{ wizard.form.mobile_number.label_tag }} <span style="color: red; font-weight: bold;">*</span>
+                {{ wizard.form.mobile_number }}
+                {% for error in wizard.form.mobile_number.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            <!-- Navigation buttons -->
+            <div class="wizard-buttons">
+                {% if wizard.steps.prev %}
+                    <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.prev }}">Previous</button>
+                {% endif %}
+                {% if wizard.steps.next %}
+                    <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.next }}">Next</button>
+                {% endif %}
+                {% if wizard.steps.last %}
+                    <input class="button" type="submit" value="Register" />
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</body>
+</html>
