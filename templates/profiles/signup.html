@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flirtro - Signup</title>
+{% extends "base.html" %}
+
+{% block body %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'signup.css' %}">
-</head>
-<body>
+
+        <h3 class="header">CREATE AN ACCOUNT</h3>
     <div class="container">
         <!-- Card 1: Independent Escort -->
         <div class="card">
@@ -41,5 +37,9 @@
             <a href="{% url 'profiles:client_register' %}" class="btn">Register as a Guest/Client</a>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'signup.css' %}">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock %}

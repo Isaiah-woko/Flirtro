@@ -1,61 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedifyCare - Login</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-</head>
-<body>
-    <div class="wrapper">
-        <form method="POST" action="{% url 'profiles:login' %}">
-            {% csrf_token %}
-            <h1>Sign In to Your Account</h1>
-            <h5>
-                😊 Let's get you signed in
-            </h5>
+{% extends "base.html" %}
+{% load static %}
 
-            <!-- Username Field -->
-            <div class="input-box">
-                <input type="text" name="username" placeholder="Username" required>
-                <i class='bx bxs-user'></i>
-                {% if form.username.errors %}
-                    {% for e in form.username.errors %}
-                        <p class="help-block">{{ e }}</p>
-                    {% endfor %}
-                {% endif %}
+{% block body %}
+<div class="wrapper">
+    <form method="POST" action="{% url 'profiles:login' %}">
+        {% csrf_token %}
+        <h1>Sign In to Your Account</h1>
+        <h5>
+            😊 Let's get you signed in
+        </h5>
+
+        <!-- Display non-field errors -->
+        {% if form.non_field_errors %}
+            <div id="error-message" class="error-messages">
+                {% for error in form.non_field_errors %}
+                        <p class="error">{{ error }}</p>
+                {% endfor %}
             </div>
-            <!-- Password Field -->
-            <div class="input-box">
-                <input type="password" name="password" placeholder="Password" required id="password">
-                <i class='bx bxs-lock-alt' id="lockIcon" style="cursor: pointer;"></i>
-                <i class='bx bx-show' id="togglePassword" style="display: none; cursor: pointer;"></i>
-                {% if form.password.errors %}
-                    {% for e in form.password.errors %}
-                        <p class="help-block">{{ e }}</p>
-                    {% endfor %}
-                {% endif %}
-            </div>
+        {% endif %}
 
-            <!-- Remember Me Checkbox -->
-            <div class="remember-forgot">
-                <label><input type="checkbox" name="remember_me"> Remember Me</label>
-            </div>
+        <!-- Username Field -->
+        <div class="input-box">
+            <input type="text" name="username" placeholder="Username" required>
+            <i class='bx bxs-user'></i>
+            {% if form.username.errors %}
+                {% for e in form.username.errors %}
+                    <p class="help-block">{{ e }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <!-- Password Field -->
+        <div class="input-box">
+            <input type="password" name="password" placeholder="Password" required id="password">
+            <i class='bx bxs-lock-alt' id="lockIcon" style="cursor: pointer;"></i>
+            <i class='bx bx-show' id="togglePassword" style="display: none; cursor: pointer;"></i>
+            {% if form.password.errors %}
+                {% for e in form.password.errors %}
+                    <p class="help-block">{{ e }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
 
-            <!-- Submit Button -->
-            <input class="btn" type="submit" value="Sign In">
+        <!-- Remember Me Checkbox -->
+        <div class="remember-forgot">
+            <label><input type="checkbox" name="remember_me"> Remember Me</label>
+        </div>
 
-            <!-- Registration Link -->
-            <div class="register-link">
-                <p>Don't have an account? <a href="{% url 'profiles:signup' %}">Register</a></p>
-            </div>
-        </form>
-    </div>
+        <!-- Submit Button -->
+        <input class="btn" type="submit" value="Sign In">
 
-    <!-- Include External JS -->
-    <script src="{% static 'js/register.js' %}" defer></script>
-</body>
-</html>
+        <!-- Registration Link -->
+        <div class="register-link">
+            <p>Don't have an account? <a href="{% url 'profiles:signup' %}">Register</a></p>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const errorMessage = document.getElementById("error-message");
+        if (errorMessage) {
+            setTimeout(() => {
+                errorMessage.style.display = "none";
+            }, 2000); // 2000ms = 2 seconds
+        }
+    });
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'login.css' %}">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock %}

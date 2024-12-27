@@ -1,0 +1,138 @@
+/* Wrapper Styling */
+.wrapper {
+    background: #e6ddcf; /* Add a background color for contrast */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Softer, modern shadow */
+    width: 360px; /* Slightly wider */
+    text-align: center;
+    margin: 80px auto; /* Center the form */
+    transition: transform 0.3s ease;
+}
+
+.wrapper:hover {
+    transform: translateY(-5px); /* Subtle hover effect */
+}
+
+/* Header Styling */
+h1 {
+    margin-bottom: 15px;
+    color: #252037; /* Darker neutral tone */
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+h5 {
+    margin-bottom: 30px;
+    color: #252037; /* Subtle gray text */
+    font-size: 1em;
+}
+
+/* Input Fields */
+.input-box {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-box input {
+    width: 100%; /* Full width for modern design */
+    padding: 12px 45px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+    outline: none;
+    font-size: 1rem;
+    background: #fff; /* Softer background color */
+    transition: all 0.3s ease;
+}
+
+.input-box input:focus {
+    border-color: #a74a68; /* Harmonized focus color */
+    background: #ffffff;
+    box-shadow: 0 0 5px rgba(167, 74, 104, 0.5); /* Glow effect */
+}
+
+.input-box i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #a74a68; /* Icon color */
+    font-size: 1.2rem;
+}
+
+/* Help Block Styling */
+.help-block {
+    color: #c85a5f; /* Softer red tone */
+    font-size: 0.875em;
+    margin-top: 0.5em;
+}
+
+/* Remember Me and Forgot Password */
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    color: #252037;
+}
+
+/* Button Styling */
+.btn {
+    background: #e03a6a; /* Primary button color */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(167, 74, 104, 0.2); /* Button shadow */
+}
+
+.btn:hover {
+    background-color: #e03a6a; /* Darker on hover */
+    transform: translateY(-3px); /* Subtle hover effect */
+    box-shadow: 0 6px 12px rgba(145, 60, 90, 0.3); /* Enhance shadow on hover */
+}
+
+/* Registration Link */
+.register-link {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #252037;
+}
+
+.register-link a {
+    color: #e03a6a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+    color: #913c5a; /* Darker on hover */
+}
+
+/* Error Messages */
+.error-messages {
+    background-color: #f2e4e6; /* Softer red background */
+    color: #913c5a; /* Muted red text */
+    border: 1px solid #e3b9be;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .wrapper {
+        width: 90%; /* Increased width for smaller screens */
+        padding: 20px;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}

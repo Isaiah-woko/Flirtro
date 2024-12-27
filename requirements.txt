@@ -12,3 +12,4 @@ pycountry
 cryptography
 # django-formtools-2.5.1
 # pip install django-formtools
+# pip install Pillow

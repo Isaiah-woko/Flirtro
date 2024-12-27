@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'auth.apps.ProfilesConfig',
     'profiles',
+    'dashboard',
 
     # Third part apps
     'crispy_forms',
@@ -101,7 +102,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Flirtro',
         'USER': 'Flirtro',
-        'PASSWORD': 'Flirtro2024'
+        'PASSWORD': 'Flirtro@2024'
     }
 }
 
@@ -140,7 +141,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Add the path to your static folder
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 
 # Default primary key field type

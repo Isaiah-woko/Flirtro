@@ -19,14 +19,14 @@ pip install -r requirements.txt
 echo --------------------
 echo Applying database migrations
 echo --------------------
-python manage.py makemigrations
-python manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py migrate
 
 # Generate test data (equivalent to test_data.py in Flask)
 echo --------------------
 echo Generate test data
 echo --------------------
-python manage.py shell < test_data.py
+python3 manage.py shell < test_data.py
 
 # Run the Django development server
 echo --------------------
@@ -34,4 +34,4 @@ echo Running the app
 echo --------------------
 export DJANGO_SETTINGS_MODULE=Flirtro.settings
 export DJANGO_DEBUG=1
-python manage.py runserver
+python3 manage.py runserver

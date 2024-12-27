@@ -2,102 +2,138 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background: #333;;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background-color: #131419; 
+
 }
 
 
-.wrapper {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
-}
-
-h1 {
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.input-box {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.input-box input {
-    width: 80%;
-    padding: 12px 40px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    outline: none;
-    font-size: 16px;
-    transition: border 0.3s ease;
-}
-
-.input-box i {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    color: #5D9CEC;
-}
-
-.input-box input:focus {
-    border-color: #48C9B0;
-}
-
-.help-block {
-    color: red; /* Text color for error messages */
-    font-size: 0.875em; /* Slightly smaller text size */
-    margin-top: 0.25em; /* Space above the error message */
-    margin-bottom: 1em; /* Space below the error message */
-    font-weight: bold; /* Make the text bold for emphasis */
-}
-
-
-.remember-forgot {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.btn {
-    background: #5D9CEC;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+/* Grid Menu Icon */
+.menu-icon {
+    display: grid;
+    grid-template-columns: repeat(3, 8px);
+    grid-template-rows: repeat(3, 8px);
+    gap: 4px;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s ease;
 }
 
-.btn:hover {
-    background: #48C9B0;
+.menu-icon span {
+    width: 8px;
+    height: 8px;
+    background-color: #333; /* Default grid dot color */
+    border-radius: 50%; /* Circle dots for a modern look */
+    transition: background-color 0.3s ease;
 }
 
-.register-link {
-    margin-top: 20px;
-}
-
-.register-link a {
-    color: #5D9CEC;
-    text-decoration: none;
-}
-
-.register-link a:hover {
-    text-decoration: underline;
+.menu-icon:hover span {
+    background-color: #e43e43; /* Highlight color on hover */
 }
 
 
-/* Responsive Design */
-@media (max-width: 480px) {
-    .wrapper {
-        width: 70%;
-    }
+/* General navbar styles */
+.navbar {
+    background-color: #252037;
+    padding: 10px 30px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 4px 6px rgba(133, 49, 49, 0.1);
 }
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #8b8995;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.navbar-toggler {
+    border-color: #8b8995;
+}
+
+.navbar-toggler-icon {
+    background-color: #8b8995;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 20px;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #FF4500;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #FF4500;
+}
+
+/* Button styles */
+.button.is-primary {
+    background-color: #FF4500;
+    border: none;
+    color: #8b8995;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.button.is-primary:hover {
+    background-color: #e74e17;
+}
+
+/* Active link styles */
+.nav-item.active .nav-link {
+    color: #e03a6a;
+}
+
+/* Sticky navbar */
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.nav-item form {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between input and button */
+}
+
+.nav-item input[type="search"] {
+    height: 30px;
+    font-size: 14px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100px; /* Adjust width for a smaller bar */
+}
+
+.nav-item button {
+    height: 30px;
+    font-size: 14px;
+    padding: 0 10px;
+    border: 1px solid #28a745;
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.nav-item button:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+

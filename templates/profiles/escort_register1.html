@@ -1,159 +1,155 @@
-<!-- multi_step_wizard.form.html -->
+{% extends "base.html" %}
 
-{% load static %}
+{% block body %}
+    {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flirtro - Register</title>
-    <link rel="stylesheet" href="{% static 'register.css' %}">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-</head>
-<body>
-    <div class="wrapper">
-        
-<form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ wizard.management_form }}
+<div class="form-wrapper">
+    <form method="POST" action="{% url 'profiles:client_register' %}" enctype="multipart/form-data" class="form-container">
+        {% csrf_token %}
+        <h1 class="form-title">Client Details</h1>
 
-            <h1>Escort Details</h1>
-
-            <!-- Render the current form fields -->
-            <!-- Username and Email Fields -->
-            <div class="input-box-container">
-                <div class="input-box">
-                    {{ wizard.form.username.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                    {{ wizard.form.username }}
-                    {% for error in wizard.form.username.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-                
-                <div class="input-box">
-                    {{ wizard.form.email.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                    {{ wizard.form.email }}
-                    {% for error in wizard.form.email.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <!-- Password and Confirm Password Fields -->
-            <div class="input-box-container">
-                <div class="input-box">
-                    {{ wizard.form.password.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                    {{ wizard.form.password }}
-                    {% for error in wizard.form.password.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-                
-                <div class="input-box">
-                    {{ wizard.form.confirm_password.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                    {{ wizard.form.confirm_password }}
-                    {% for error in wizard.form.confirm_password.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <!-- Display Name Field -->
+        <!-- Username and Email Fields -->
+        <div class="input-box-container">
             <div class="input-box">
-                {{ wizard.form.display_name.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                {{ wizard.form.display_name }}
-                {% for error in wizard.form.display_name.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                {{ form.username.label_tag }} <span class="required">*</span>
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <span class="error">{{ error }}</span>
                 {% endfor %}
             </div>
-
-            <!-- Country, State, and City Fields -->
-            <!-- <div class="input-box-container">
-                <div class="custom-select">
-                    {{ wizard.form.country.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                    {{ wizard.form.country }}
-                    {% for error in wizard.form.country.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-                
-                <div class="custom-select">
-                    {{ wizard.form.state.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                    {{ wizard.form.state }}
-                    {% for error in wizard.form.state.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-                
-                <div class="custom-select">
-                    {{ wizard.form.city.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                    {{ wizard.form.city }}
-                    {% for error in wizard.form.city.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-            </div> -->
-
-            <!-- Date of Birth Field -->
+            
             <div class="input-box">
-                {{ wizard.form.date_of_birth.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                {{ wizard.form.date_of_birth }}
-                {% for error in wizard.form.date_of_birth.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                {{ form.email.label_tag }} <span class="required">*</span>
+                {{ form.email }}
+                {% for error in form.email.errors %}
+                    <span class="error">{{ error }}</span>
                 {% endfor %}
             </div>
+        </div>
 
-            <!-- Gender Field -->
-            <div class="custom-select">
-                {{ wizard.form.gender.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                {{ wizard.form.gender }}
-                {% for error in wizard.form.gender.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-
-            <!-- Heading and Contact Fields -->
-            <div class="input-box-container">
-                <div class="input-box">
-                    {{ wizard.form.heading.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                    {{ wizard.form.heading }}
-                    {% for error in wizard.form.heading.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-
-                <div class="input-box">
-                    {{ wizard.form.country_code.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                    {{ wizard.form.country_code }}
-                    {% for error in wizard.form.country_code.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <!-- Mobile Number Field -->
+        <!-- Password and Confirm Password Fields -->
+        <div class="input-box-container">
             <div class="input-box">
-                {{ wizard.form.mobile_number.label_tag }} <span style="color: red; font-weight: bold;">*</span>
-                {{ wizard.form.mobile_number }}
-                {% for error in wizard.form.mobile_number.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                {{ form.password.label_tag }} <span class="required">*</span>
+                {{ form.password }}
+                {% for error in form.password.errors %}
+                    <span class="error">{{ error }}</span>
                 {% endfor %}
             </div>
-            <!-- Navigation buttons -->
-            <div class="wizard-buttons">
-                {% if wizard.steps.prev %}
-                    <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.prev }}">Previous</button>
-                {% endif %}
-                {% if wizard.steps.next %}
-                    <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.next }}">Next</button>
-                {% endif %}
-                {% if wizard.steps.last %}
-                    <input class="button" type="submit" value="Register" />
-                {% endif %}
+            
+            <div class="input-box">
+                {{ form.confirm_password.label_tag }} <span class="required">*</span>
+                {{ form.confirm_password }}
+                {% for error in form.confirm_password.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
             </div>
-        </form>
-    </div>
-</body>
-</html>
+        </div>
+
+        <!-- Display Name Field -->
+        <div class="input-box">
+            {{ form.display_name.label_tag }} <span class="required">*</span>
+            {{ form.display_name }}
+            {% for error in form.display_name.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- Country and State/City Fields -->
+        <div class="input-box-container">
+            <div class="input-box">
+                <label for="country">Country <span class="required">*</span></label>
+                {{ form.country }}
+                {% for error in form.country.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="input-box">
+                <label for="state">State <span class="required">*</span></label>
+                {{ form.state }}
+                {% for error in form.state.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="input-box">
+                <label for="city">City <span class="required">*</span></label>
+                {{ form.city }}
+                {% for error in form.city.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Date of Birth Field -->
+        <div class="input-box">
+            {{ form.date_of_birth.label_tag }} <span class="required">*</span>
+            {{ form.date_of_birth }}
+            {% for error in form.date_of_birth.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- Gender Field -->
+        <div class="input-box">
+            <label for="gender">Gender <span class="required">*</span></label>
+                {{ form.gender }}
+            {% for error in form.gender.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+
+        <!-- Mobile Number Field -->
+        <div class="input-box">
+            {{ form.mobile_number.label_tag }} <span class="required">*</span>
+            {{ form.mobile_number }}
+            {% for error in form.mobile_number.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- Profile Picture Upload -->
+        <div class="input-box">
+            <label for="profile_picture" class="profile-label">Profile Picture</label>
+            <input type="file" id="profile_picture" name="profile_picture" accept="image/*" class="file-input" />
+            <div id="preview-container" class="preview-container">
+                <img id="profile-preview" src="" alt="Profile Picture Preview" />
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="submit-btn" type="submit">Sign Up As A Client</button>
+        <p class="login-link">Already have an account? <a href="{% url 'profiles:login' %}">Login</a></p>
+    </form>
+</div>
+
+<script>
+    // Preview the selected profile image
+    document.getElementById('profile_picture').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const previewContainer = document.getElementById('preview-container');
+        const profilePreview = document.getElementById('profile-preview');
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                profilePreview.src = e.target.result;
+                previewContainer.style.display = 'block'; // Show the preview container
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            previewContainer.style.display = 'none'; // Hide the preview container if no file is selected
+        }
+    });
+</script>
+
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'client_register.css' %}">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock %}

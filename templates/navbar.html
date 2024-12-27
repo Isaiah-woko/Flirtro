@@ -1,7 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+<nav class="navbar navbar-expand-lg sticky-top">
     <a class="navbar-brand" href="{% url 'home' %}">FLIRTRO</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
@@ -13,7 +23,6 @@
                     <a class="nav-link" href="{% url 'profiles:logout' %}">
                         <i class="fas fa-sign-out-alt"></i>Logout</a>
                 </li>
-                
                 {% if user.actived_subscription %}
                     {% if 'patient' in user.roles.all|join:', ' %}
                         <li class="nav-item">
@@ -34,12 +43,9 @@
                             <i class="fa fa-fw fa-home"></i>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-fw fa-info-circle"></i>About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-fw fa-concierge-bell"></i>Services</a>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        </form>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'profiles:login' %}">
