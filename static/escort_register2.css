@@ -1,0 +1,97 @@
+/* Wrapper for the form */
+.wrapper {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #e6ddcf; /* Dark background */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Form container */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form title */
+.form-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #252037; /* Dark text for title */
+}
+
+
+/* Input box styling */
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.input-box label {
+    font-weight: 500;
+    font-size: 16px;
+    color: #333;
+}
+
+.input-box input,
+.input-box select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input-box span {
+    font-size: 12px;
+    color: red;
+}
+
+.input-box input:focus,
+.input-box select:focus {
+    border-color: #e63946; /* Red border on focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(230, 57, 70, 0.3);
+}
+
+/* Submit button */
+.submit-btn {
+    padding: 10px;
+    background-color: #e63946; /* Red button */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #d62828; /* Darker red on hover */
+}
+/* Login link */
+.login-link {
+    text-align: center;
+    font-size: 14px;
+    color: #252037; /* Dark text for the link */
+}
+
+.login-link a {
+    color: #e63946; /* Red color for the link */
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* Error message styling */
+input:invalid,
+select:invalid {
+    border-color: red;
+}

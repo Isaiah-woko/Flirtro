@@ -1,51 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Client Profile Dashboard</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'client_dashboard.css' %}">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-  <div class="dashboard-container">
-    <!-- Profile and Contact Info Section -->
-    <div class="profile-section">
-      <div class="profile-info">
-        <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="profile-pic">
-        <div class="text-info">
-          <h2>{{ profile.user.username }}</h2>
-          <p>@{{ profile.display_name }}</p>
+{% extends "base.html" %}
+
+{% block body %}
+    {% load static %}
+
+    <div class="dashboard-container">
+      
+      <!-- Profile Section -->
+      <div class="profile-section">
+        <div class="profile-info">
+          <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="profile-pic">
+          <div class="text-info">
+            <h2>{{ profile.user.username }}</h2>
+            <p>@{{ profile.display_name }}</p>
+          </div>
+        </div>
+        <div class="contact-info">
+          <p><i class="fas fa-phone-alt"></i> {{ profile.mobile_number }}</p>
+          <p><i class="fas fa-envelope"></i> {{ profile.user.email }}</p>
+          <div class="contact-flex">
+            <p><i class="fas fa-sign-in-alt"></i> Last Login: {{ profile.user.last_login|date:"M d, Y" }}</p>
+            <p><i class="fas fa-sign-in-alt"></i> Registered On: {{ profile.user.date_joined|date:"M d, Y" }}</p>
+          </div>
+        </div>        
+      </div>
+
+      <!-- Action Cards Section -->
+      <div class="action-section">
+        <div class="action-card" onclick="viewProfile()">
+          <i class="fas fa-user"></i>
+          <p>View My Profile</p>
+        </div>
+        <div class="action-card" onclick="changePassword()">
+          <i class="fas fa-key"></i>
+          <p>Change Password</p>
+        </div>
+        <div class="action-card" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          <p>Logout</p>
+        </div>
+        <div class="action-card" onclick="deleteProfile()">
+          <i class="fas fa-trash-alt"></i>
+          <p>Delete Profile</p>
         </div>
       </div>
-      <div class="contact-info">
-        <p><i class="fas fa-phone"></i> {{ profile.mobile_number }}</p>
-        <p><i class="fas fa-envelope"></i> {{ profile.user.email }}</p>
-        <p><i class="fas fa-sign-in-alt"></i> Last Login: {{ profile.user.last_login }}</p>
-        <p><i class="fas fa-calendar-alt"></i> Registered On: {{ profile.user.date_joined }}</p>
-      </div>
+
     </div>
 
-    <!-- Action Buttons Section -->
-    <div class="action-section">
-      <div class="action-card" onclick="viewProfile()">
-        <i class="fas fa-user"></i>
-        <p>View Profile</p>
-      </div>
-      <div class="action-card" onclick="changePassword()">
-        <i class="fas fa-key"></i>
-        <p>Change Password</p>
-      </div>
-      <div class="action-card" onclick="logout()">
-        <i class="fas fa-sign-out-alt"></i>
-        <p>Logout</p>
-      </div>
-      <div class="action-card" onclick="deleteProfile()">
-        <i class="fas fa-trash-alt"></i>
-        <p>Delete Profile</p>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'client_dashboard.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+{% endblock %}

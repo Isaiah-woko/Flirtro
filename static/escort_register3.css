@@ -1,0 +1,180 @@
+/* General Form Styling */
+.form-container {
+    background-color: #e6ddcf; /* Light background color for the form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 50px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #252037;
+}
+
+.input-box {
+    margin-top: 30px;
+
+}
+
+/* Image Upload Section Styling */
+.image-upload-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.image-upload-item {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border: 2px dashed #aaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.image-upload-item:hover {
+    background-color: #f0e9d7; /* Light hover effect */
+}
+
+.image-upload-input {
+    display: none;
+}
+
+.image-upload-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 24px;
+    color: #555;
+}
+
+.image-upload-label:hover {
+    color: #333;
+}
+
+.image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.remove-image-btn:hover {
+    background: darkred;
+}
+
+/* Submit Button Styling */
+.submit-btn {
+    background-color: #e63946; /* Red button */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #d62828; /* Darker red on hover */
+}
+/* Error Messages Styling */
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+/* Link Styling */
+.login-link {
+    text-align: center;
+    font-size: 14px;
+    color: #252037; /* Dark text for the link */
+}
+
+.login-link a {
+    color: #e63946; /* Red color for the link */
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* Container for upload instructions */
+.upload-instructions {
+    background-color: #f9f9f9; /* Light grey background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 20px; /* Space from the top */
+}
+
+/* Unordered list styling */
+.upload-instructions ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* List item styling */
+.upload-instructions li {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Emphasis on important items */
+.upload-instructions li strong {
+    color: #e74c3c; /* Red color for emphasis */
+    font-weight: bold;
+}
+
+/* Styling for strong tags */
+.upload-instructions li br {
+    line-height: 1.5; /* Adding space between line breaks */
+}
+
+/* Responsive design: Adjust for mobile screens */
+@media (max-width: 600px) {
+    .upload-instructions {
+        padding: 15px;
+    }
+    .upload-instructions ul {
+        margin-left: 15px;
+    }
+    .upload-instructions li {
+        font-size: 14px;
+    }
+}

@@ -4,9 +4,9 @@
     {% load static %}
 
 <div class="form-wrapper">
-    <form method="POST" action="{% url 'profiles:client_register' %}" enctype="multipart/form-data" class="form-container">
+    <form method="POST" action="{% url 'profiles:escort_register1' %}" enctype="multipart/form-data" class="form-container">
         {% csrf_token %}
-        <h1 class="form-title">Client Details</h1>
+        <h1 class="form-title">Escort Registration - Step 1</h1>
 
         <!-- Username and Email Fields -->
         <div class="input-box-container">
@@ -100,6 +100,22 @@
             {% endfor %}
         </div>
 
+        <!-- Heading Field -->
+            <div class="input-box">
+                {{ form.heading.label_tag }} <span class="required">*</span>
+                {{ form.heading }}
+                {% for error in form.heading.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+
+            <!-- Country Code Field -->
+            <div class="input-box">
+                <label for="Country Code">Country Code <span class="required">*</span></label>
+                    {{ form.country_code }}
+                {% for error in form.country_code.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
 
         <!-- Mobile Number Field -->
         <div class="input-box">
@@ -110,46 +126,15 @@
             {% endfor %}
         </div>
 
-        <!-- Profile Picture Upload -->
-        <div class="input-box">
-            <label for="profile_picture" class="profile-label">Profile Picture</label>
-            <input type="file" id="profile_picture" name="profile_picture" accept="image/*" class="file-input" />
-            <div id="preview-container" class="preview-container">
-                <img id="profile-preview" src="" alt="Profile Picture Preview" />
-            </div>
-        </div>
-
         <!-- Submit Button -->
-        <button class="submit-btn" type="submit">Sign Up As A Client</button>
+        <button class="submit-btn" type="submit">Next (Step 1/3)</button>
         <p class="login-link">Already have an account? <a href="{% url 'profiles:login' %}">Login</a></p>
     </form>
 </div>
 
-<script>
-    // Preview the selected profile image
-    document.getElementById('profile_picture').addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        const previewContainer = document.getElementById('preview-container');
-        const profilePreview = document.getElementById('profile-preview');
-
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                profilePreview.src = e.target.result;
-                previewContainer.style.display = 'block'; // Show the preview container
-            };
-
-            reader.readAsDataURL(file);
-        } else {
-            previewContainer.style.display = 'none'; // Hide the preview container if no file is selected
-        }
-    });
-</script>
-
 {% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'client_register.css' %}">
+<link rel="stylesheet" href="{% static 'escort_register.css' %}">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 {% endblock %}

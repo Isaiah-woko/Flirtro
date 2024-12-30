@@ -4,44 +4,51 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.conf import settings
 from django.http import HttpResponseRedirect
-from formtools.wizard.views import SessionWizardView
-from .forms import LoginForm, EscortRegisterForm1, EscortRegisterForm2, ClientRegisterForm
-# from .models import User
+from .forms import LoginForm, EscortRegisterForm1, EscortRegisterForm2, EscortImageForm, ClientRegisterForm
 from django.contrib.auth.decorators import login_required
 import os
-from .models import ClientProfile
+from .models import ClientProfile, Image, EscortProfile
 from django.contrib.auth.models import User
 
 # Check if the file uploaded is an image with an allowed extension
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+# ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+# def allowed_file(filename):
+#     return '.' in filename and \
+#            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Login view
 
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import LoginForm
+
 def login_view(request):
+    # Handle POST request
     if request.method == 'POST':
         form = LoginForm(request.POST)
+        
+        # Check if form is valid
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
+            
+            # Check if user exists and authenticate
             if user is not None:
                 login(request, user)
-                if hasattr(user, 'clientprofile'):
-                    return redirect('dashboard:client_dashboard')
-                # elif hasattr(user, 'profile2'):
-                #     # Custom behavior for profile2
-                #     return redirect('profile2_dashboard')
                 messages.success(request, "You have been logged in.")
+                return redirect('/')
             else:
                 messages.error(request, "Invalid credentials")
         else:
             messages.error(request, "Invalid form submission.")
+    
+    # Handle GET request
     else:
         form = LoginForm()
+
     return render(request, 'profiles/login.html', {'form': form})
 
 # Logout view
@@ -59,53 +66,107 @@ def home_view(request):
     return render(request, 'home.html')
 
 
-FORMS = [
-    ("step1", EscortRegisterForm1),
-    ("step2", EscortRegisterForm2),  # Ensure RegisterForm2 is passed as a class
-]
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import EscortRegisterForm1, EscortRegisterForm2, EscortImageForm
+from .models import EscortProfile, Image
+from django.contrib.auth.models import User
+from datetime import datetime
+
+def escort_register1(request):
+    if request.method == 'POST':
+        form = EscortRegisterForm1(request.POST)
+        if not form.is_valid():
+            print("Form errors:", form.errors)
+            return render(request, 'profiles/escort_register1.html', {'form': form})
+        if form.is_valid():
+            # Convert date_of_birth to string
+            cleaned_data = form.cleaned_data
+            cleaned_data['date_of_birth'] = cleaned_data['date_of_birth'].strftime('%Y-%m-%d')
+            
+            # Save data to the session
+            request.session['step1_data'] = cleaned_data
+            return redirect('profiles:escort_register2')
+    else:
+        form = EscortRegisterForm1()
+
+    return render(request, 'profiles/escort_register1.html', {'form': form})
+
+def escort_register2(request):
+    step1_data = request.session.get('step1_data')  # Retrieve Step 1 data
+    if not step1_data:
+        return redirect('profiles:escort_register1')  # Redirect if step1 is incomplete
+
+    if request.method == 'POST':
+        form = EscortRegisterForm2(request.POST)
+        if form.is_valid():
+            step2_data = form.cleaned_data
+            # Combine step1 and step2 data
+            complete_data = {**step1_data, **step2_data}
+
+            # Convert date_of_birth back to date object
+            complete_data['date_of_birth'] = datetime.strptime(complete_data['date_of_birth'], '%Y-%m-%d').date()
+
+            # Create a new User instance
+            user = User.objects.create_user(username=complete_data['username'], email=complete_data['email'], password=complete_data['password'])
+
+            # Save additional data in EscortProfile
+            escort_profile = EscortProfile.objects.create(
+                user=user,
+                display_name=complete_data['display_name'],
+                country=complete_data['country'],
+                state=complete_data['state'],
+                city=complete_data['city'],
+                date_of_birth=complete_data['date_of_birth'],
+                gender=complete_data['gender'],
+                heading=complete_data['heading'],
+                country_code=complete_data['country_code'],
+                mobile_number=complete_data['mobile_number'],
+                bust_size=complete_data['bust_size'],
+                height=complete_data['height'],
+                looks=complete_data['looks'],
+                smoker=complete_data['smoker'],
+                sexual_orientation=complete_data['sexual_orientation'],
+                services=complete_data['services']
+            )
+
+            # Save the escort_profile id in the session for the next step
+            request.session['escort_profile_id'] = escort_profile.id
+
+            messages.success(request, "Step 2 completed successfully!")
+            return redirect('profiles:escort_register3')
+    else:
+        form = EscortRegisterForm2()
+
+    return render(request, 'profiles/escort_register2.html', {'form': form})
 
 
+def escort_register3(request):
+    escort_profile_id = request.session.get('escort_profile_id')
+    if not escort_profile_id:
+        return redirect('profiles:escort_register2')  # Redirect if step 2 is incomplete
 
-class MultiStepFormWizard(SessionWizardView):
-    # Define the forms and their steps
-    form_list = FORMS
+    if request.method == 'POST':
+        print(f"Request FILES: {request.FILES}")  # Log the request's FILES attribute
+        form = EscortImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            uploaded_images = form.cleaned_data['photo']
+            escort_profile = EscortProfile.objects.get(id=escort_profile_id)
+            for image in uploaded_images:
+                Image.objects.create(escort_profile=escort_profile, photo=image)  # Save each uploaded image
+            messages.success(request, "Your registration is complete!")
+            return redirect('profiles:login')  # Redirect after successful upload
+        else:
+            print("Form errors:", form.errors)  # Debugging log
 
-    def get_template_names(self):
-        """
-        Override this method to render different templates for each step.
-        """
-        step = self.steps.current  # Get the current step
-        
-        if step == 'step1':
-            return ['profiles/escort_register1.html']  # Template for Step 1
-        elif step == 'step2':
-            return ['profiles/escort_register2.html']  # Template for Step 2
-        # Add more steps as needed
-        return ['profiles/signup.html']  # Fallback template
+    else:
+        form = EscortImageForm()
 
-    def done(self, form_list, **kwargs):
-        """
-        This function is called when the form is completed (after the last step).
-        """
-        # Collect all form data
-        data = {}
-        for form in form_list:
-            data.update(form.cleaned_data)
-
-        # Optionally save to the database or send an email
-        # Example: Save the data to a model here
-
-        # Flash a success message
-        messages.success(self.request, "Your form has been successfully submitted!")
-
-        # Redirect to a "thank you" or completion page
-        return HttpResponseRedirect('/form/complete')
+    return render(request, 'profiles/escort_register3.html', {'form': form})
 
 
-def form_complete(request):
-    # Render a template or send a response indicating the form submission is complete
-    return render(request, 'profiles/form_complete.html')
-
+# def register_complete(request):
+#     return render(request, 'profiles/signup_complete.html')
 
 
 def client_register(request):

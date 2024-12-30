@@ -15,14 +15,38 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <button class="button is-primary" id="submitBtn">Subscribe</button>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profiles:logout' %}">
-                        <i class="fas fa-sign-out-alt"></i>Logout</a>
-                </li>
+                {% if user.is_authenticated %}
+                    <ul class="navbar-nav">
+                        <!-- Home Link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">
+                                <i></i>Home
+                            </a>
+                        </li>
+
+                        <!-- Search Form -->
+                        <li class="nav-item">
+                            <form class="d-flex">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            </form>
+                        </li>
+
+                        <!-- User Profile and Logout -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard:client_dashboard' %}">
+                                <!-- User Profile Picture as a Circle -->
+                                <img src="{{ profile.profile_picture.url }}" alt="User Profile" class="rounded-circle" width="50" height="50">
+                            </a>
+                        </li>
+
+                        <!-- Logout Link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profiles:logout' %}">
+                                <i></i>Logout
+                            </a>
+                        </li>
+                    </ul>
+
                 {% if user.actived_subscription %}
                     {% if 'patient' in user.roles.all|join:', ' %}
                         <li class="nav-item">

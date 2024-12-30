@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block body %}
+    {% load static %}
+
+<div class="form-wrapper">
+    <form method="POST" action="{% url 'profiles:escort_register3' %}" enctype="multipart/form-data" class="form-container">
+        {% csrf_token %}
+        <h1 class="form-title">Escort Registration - Step 3</h1>
+
+        <div class="upload-instructions">
+            <ul>
+                <li>Upload at least x4 pictures</li>
+                <li>Male clients tend to like pictures of female escorts in pants and bras, or a nice and casual picture in a beautiful background</li>
+                <li>You can cover your face with a sticker</li>
+                <li>The pictures <strong> MUST BE OF YOU, NO FAKE PICS</strong></li>
+                <li>We do <strong>NOT</strong> tolerate fake pictures. That will result in instant disqualification and ban. Not even a second chance. Don't say you weren't warned.</li>
+                <li><strong>DO NOT</strong> use kids' photos for face cover, use emojis instead</li>
+            </ul>
+        </div>
+        
+        <!-- Upload Images Field -->
+        <div class="input-box">
+            <label for="photo">Upload Photos (At least 4)</label>
+            <div id="image-upload-container" class="image-upload-container">
+                <div class="image-upload-item">
+                    <input type="file" id="image-input-1" name="photo[]" class="image-upload-input" accept="image/*" onchange="previewImage(event, 1)">
+                    <label for="image-input-1" class="image-upload-label">
+                        <i class="bx bx-plus"></i> Add Image
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="submit-btn" type="submit">Submit (Step 3/3)</button>
+        <p class="login-link">Already have an account? <a href="{% url 'profiles:login' %}">Login</a></p>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'escort_register3.css' %}">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let imageCount = 1;
+
+    function previewImage(event, count) {
+        const container = event.target.closest('.image-upload-item');
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.classList.add('image-preview');
+            // container.innerHTML = '';  // Clear existing content in the container
+            container.appendChild(img);  // Append the image
+
+            // Create the remove button
+            const removeBtn = document.createElement('button');
+            removeBtn.classList.add('remove-image-btn');
+            removeBtn.innerText = 'X';
+            removeBtn.onclick = function() {
+                container.remove(); // Remove the entire container including the input field
+            };
+            container.appendChild(removeBtn);
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);  // Read the file as a data URL
+
+            // Add another input box for the next image
+            imageCount++;
+            const newImageUploadItem = document.createElement('div');
+            newImageUploadItem.classList.add('image-upload-item');
+            const newInput = document.createElement('input');
+            newInput.type = 'file';
+            newInput.name = `photo[]`;
+            newInput.id = `image-input-${imageCount}`;
+            newInput.classList.add('image-upload-input');
+            newInput.accept = 'image/*';
+            newInput.onchange = function(event) {
+                previewImage(event, imageCount);
+            };
+
+            const newLabel = document.createElement('label');
+            newLabel.classList.add('image-upload-label');
+            newLabel.htmlFor = `image-input-${imageCount}`;
+            newLabel.innerHTML = '<i class="bx bx-plus"></i> Add Image';
+
+            newImageUploadItem.appendChild(newInput);
+            newImageUploadItem.appendChild(newLabel);
+            document.getElementById('image-upload-container').appendChild(newImageUploadItem);
+        }
+    }
+</script>
+{% endblock %}

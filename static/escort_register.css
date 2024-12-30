@@ -3,7 +3,7 @@
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #2c2c2c; /* Dark background */
+    background-color: #e6ddcf; /* Dark background */
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
@@ -18,9 +18,10 @@
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    color: #fff; /* White text for title */
+    color: #252037; /* Dark text for title */
 }
 
+/* Input box container */
 .input-box-container {
     display: flex;
     gap: 20px;
@@ -29,13 +30,15 @@
 .input-box {
     display: flex;
     flex-direction: column;
+    gap: 8px; /* Space between label and input */
     width: 100%;
+    margin-bottom: 20px; /* Space between input fields */
 }
 
 .input-box label,
 .custom-select label {
     font-size: 14px;
-    color: #fff; /* Light text for labels */
+    color: #252037; /* Dark text for labels */
 }
 
 .required {
@@ -43,40 +46,40 @@
     font-weight: bold;
 }
 
-input[type="text"], input[type="email"], input[type="password"], select, input[type="file"] {
-    padding: 8px;
+/* General input styling */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"],
+textarea,
+select,
+input[type="date"] {
+    padding: 10px;
     font-size: 14px;
     border-radius: 4px;
     border: 1px solid #ccc;
     margin-top: 8px;
     width: 100%;
-    background-color: #333; /* Dark input fields */
-    color: #fff; /* White text for inputs */
+    background-color: #fff; /* Dark input fields */
+    color: #252037; /* White text for inputs */
+    box-sizing: border-box;
 }
 
-/* Ensure country, gender, and dob fields have a dark background */
-.custom-select select,
-input[type="date"],
-select {
-    background-color: #333 !important; /* Dark background for select and date fields */
-    color: #fff !important; /* White text */
-    border: 1px solid #555; /* Dark border to match the theme */
-    padding: 8px;
-    font-size: 14px;
-    border-radius: 4px;
-    width: 100%;
-    appearance: none; /* Remove default dropdown arrow styling (if necessary) */
+/* Styling for textarea */
+textarea {
+    height: 100px; /* Taller textarea for bio or heading fields */
+    resize: none; /* Disable resizing for consistent layout */
 }
 
-/* Ensure focus state is consistent */
-.custom-select select:focus,
-input[type="date"]:focus,
+input:focus,
+textarea:focus,
 select:focus {
-    border-color: #e63946 !important; /* Red border on focus to match the theme */
+    border-color: #e63946; /* Red border on focus */
     outline: none;
+    box-shadow: 0 0 5px rgba(230, 57, 70, 0.3); /* Subtle glow effect */
 }
 
-/* Custom styling for select dropdowns */
+/* Custom select dropdowns */
 .custom-select {
     position: relative;
     display: inline-block;
@@ -89,7 +92,6 @@ select:focus {
     padding-right: 30px; /* Space for the custom arrow */
 }
 
-/* Custom arrow icon */
 .custom-select:after {
     content: '\25BC'; /* Downward arrow */
     font-size: 18px;
@@ -101,27 +103,13 @@ select:focus {
     pointer-events: none; /* Prevent the arrow from interfering with click events */
 }
 
-input[type="file"] {
-    padding: 3px;
-}
-
 .error {
     color: #e63946; /* Red for error messages */
     font-size: 12px;
+    margin-top: 5px;
 }
 
-.preview-container {
-    margin-top: 10px;
-    display: none;
-}
-
-#profile-preview {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
+/* Submit button */
 .submit-btn {
     padding: 10px;
     background-color: #e63946; /* Red button */
@@ -137,10 +125,11 @@ input[type="file"] {
     background-color: #d62828; /* Darker red on hover */
 }
 
+/* Login link */
 .login-link {
     text-align: center;
     font-size: 14px;
-    color: #fff; /* White text for the link */
+    color: #252037; /* Dark text for the link */
 }
 
 .login-link a {

@@ -89,3 +89,26 @@ class ClientProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
+
+
+class EscortProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    display_name = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    date_of_birth = models.DateField()
+    gender = models.CharField(max_length=10)
+    heading = models.TextField()
+    country_code = models.CharField(max_length=5)
+    mobile_number = models.CharField(max_length=15)
+    bust_size = models.CharField(max_length=50)
+    height = models.CharField(max_length=50)
+    looks = models.CharField(max_length=50)
+    smoker = models.CharField(max_length=5)
+    sexual_orientation = models.CharField(max_length=50)
+    services = models.TextField()
+
+class Image(models.Model):
+    escort_profile = models.ForeignKey(EscortProfile, null=True, blank=True, on_delete=models.CASCADE, related_name='images')
+    photo = models.ImageField(upload_to='escort_images/')

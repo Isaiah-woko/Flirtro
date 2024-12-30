@@ -1,0 +1,34 @@
+# class MultiStepFormWizard(SessionWizardView):
+#     # Define the forms and their steps
+#     form_list = FORMS
+
+#     def get_template_names(self):
+#         """
+#         Override this method to render different templates for each step.
+#         """
+#         step = self.steps.current  # Get the current step
+        
+#         if step == 'step1':
+#             return ['profiles/escort_register1.html']  # Template for Step 1
+#         elif step == 'step2':
+#             return ['profiles/escort_register2.html']  # Template for Step 2
+#         # Add more steps as needed
+#         return ['profiles/signup.html']  # Fallback template
+
+#     def done(self, form_list, **kwargs):
+#         """
+#         This function is called when the form is completed (after the last step).
+#         """
+#         # Collect all form data
+#         data = {}
+#         for form in form_list:
+#             data.update(form.cleaned_data)
+
+#         # Optionally save to the database or send an email
+#         # Example: Save the data to a model here
+
+#         # Flash a success message
+#         messages.success(self.request, "Your form has been successfully submitted!")
+
+#         # Redirect to a "thank you" or completion page
+#         return HttpResponseRedirect('/form/complete')

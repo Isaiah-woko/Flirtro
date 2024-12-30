@@ -50,16 +50,16 @@ input[type="text"], input[type="email"], input[type="password"], select, input[t
     border: 1px solid #ccc;
     margin-top: 8px;
     width: 100%;
-    background-color: #333; /* Dark input fields */
-    color: #fff; /* White text for inputs */
+    background-color: #fff; /* Dark input fields */
+    color: #252037; /* White text for inputs */
 }
 
 /* Ensure country, gender, and dob fields have a dark background */
 .custom-select select,
 input[type="date"],
 select {
-    background-color: #333 !important; /* Dark background for select and date fields */
-    color: #fff !important; /* White text */
+    background-color: #fff !important; /* Dark background for select and date fields */
+    color: #252037 !important; /* White text */
     border: 1px solid #555; /* Dark border to match the theme */
     padding: 8px;
     font-size: 14px;
